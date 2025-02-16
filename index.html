@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表白页面</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #ffd6e7;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+
+        .container {
+            text-align: center;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: #ff4d8d;
+            margin-bottom: 2rem;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+        }
+
+        #agreeBtn {
+            background-color: #ff4d8d;
+            color: white;
+        }
+
+        #disagreeBtn {
+            background-color: gray;
+            color: black;
+        }
+
+        .heart {
+            font-size: 3rem;
+            color: #ff4d8d;
+            margin-bottom: 1rem;
+            animation: heartbeat 1s infinite;
+        }
+
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="heart">❤</div>
+        <h1>做我女朋友好吗？</h1>
+        <div class="buttons">
+            <button id="agreeBtn">同意</button>
+            <button id="disagreeBtn">不同意</button>
+        </div>
+    </div>
+
+    <script>
+        // 定义一组表白话语
+        const messages = [
+            "做我女朋友好吗？",
+            "我真的很喜欢你！",
+            "再考虑考虑吧～",
+            "你是我遇到最好的人！",
+            "我会一直对你好的！",
+            "你真的确定要拒绝我吗？",
+            "给我一次机会好不好？",
+            "我保证会让你幸福！",
+            "你是我的唯一！",
+            "没有你我真的不行",
+            "我们很合适的！",
+            "我会一直陪着你！"
+        ];
+
+        let currentIndex = 0;
+        const title = document.querySelector('h1');
+
+        document.getElementById('disagreeBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // 随机移动按钮位置
+            this.style.position = 'absolute';
+            this.style.left = Math.random() * (window.innerWidth - this.offsetWidth) + 'px';
+            this.style.top = Math.random() * (window.innerHeight - this.offsetHeight) + 'px';
+            
+            // 随机更换文字
+            currentIndex = (currentIndex + 1) % messages.length;
+            title.textContent = messages[currentIndex];
+        });
+
+        document.getElementById('agreeBtn').addEventListener('click', function() {
+            // 点击同意后的操作
+            alert('太好了！我们在一起吧！❤');
+            document.body.innerHTML = `
+                <div class="container">
+                    <div class="heart">❤</div>
+                    <h1>我爱你！</h1>
+                    <p style="color: #ff4d8d; font-size: 1.2rem; margin-top: 1rem;">
+                        愿我们的爱情永远甜蜜！
+                    </p>
+                </div>
+            `;
+        });
+    </script>
+</body>
+</html> 
